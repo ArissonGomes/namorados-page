@@ -50,9 +50,9 @@
         }
 
         .carousel-images img {
-            min-width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
-            height: 100%;
-            object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário */
+            min-width: 100%; /* Cada imagem ocupa 100% da largura do contêiner do carrossel */
+            height: 100%; /* Cada imagem ocupa 100% da altura do contêiner do carrossel */
+            object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário, mantendo a proporção */
             border-radius: 1rem; /* Cantos arredondados para as imagens */
         }
 
@@ -170,6 +170,10 @@
         <div class="carousel-container">
             <div class="carousel-images" id="carouselImages">
                 <!-- Por favor, substitua estas URLs pelas suas 8 fotos! -->
+                <!-- Para melhor formatação e desempenho, tente usar imagens com proporções de aspecto semelhantes (ex: 16:9 ou 4:3) -->
+                <!-- e otimize o tamanho do arquivo (KB/MB) antes de carregá-las. -->
+                <!-- As imagens serão escaladas para preencher a área do carrossel (300px de altura), -->
+                <!-- e podem ser cortadas nas laterais se as proporções originais forem muito diferentes. -->
                 <img src="1.png?text=Foto+1+do+Nosso+Amor" alt="Foto 1 do casal">
                 <img src="2.jpg?text=Foto+2+de+Momentos+Especiais" alt="Foto 2 de momentos especiais">
                 <img src="3.jpg?text=Foto+3+de+Alegria+e+Sorrisos" alt="Foto 3 de alegria e sorrisos">
