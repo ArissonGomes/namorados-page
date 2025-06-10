@@ -3,55 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Dia dos Namorados</title>
+    <title>Para o Meu Amor ❤️</title>
+    <!-- Inclui o Tailwind CSS para estilização fácil e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Define a fonte Inter como padrão para toda a página */
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ffcccc, #ffe6e6);
+            font-family: 'Inter', sans-serif;
+            background-color: #fce7f3; /* Rosa claro de fundo */
             color: #333;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .gallery {
             display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que o corpo ocupe pelo menos a altura da viewport */
+            padding: 1rem;
         }
-        .gallery img {
-            max-height: 400px;
-            margin: 0 10px;
-            border-radius: 10px;
-            scroll-snap-align: center;
+
+        /* Estilo para o contêiner principal da página */
+        .container {
+            background-color: #ffffff; /* Fundo branco para o conteúdo */
+            border-radius: 1.5rem; /* Cantos mais arredondados */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            max-width: 900px; /* Largura máxima do contêiner */
+            width: 100%;
+            overflow: hidden; /* Garante que o carrossel não vaze */
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* Espaçamento entre as seções */
         }
-        .text-section {
-            margin-top: 20px;
+
+        /* Estilos específicos para o carrossel de imagens */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Altura fixa para o carrossel */
+            overflow: hidden;
+            border-radius: 1rem; /* Cantos arredondados para o carrossel */
+            background-color: #f0f0f0; /* Fundo para quando as imagens estiverem carregando */
         }
-        iframe {
-            width: 90%;
-            max-width: 560px;
-            height: 315px;
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Transição suave para o slide */
+            height: 100%;
+        }
+
+        .carousel-images img {
+            min-width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário */
+            border-radius: 1rem; /* Cantos arredondados para as imagens */
+        }
+
+        /* Estilos para os botões de navegação do carrossel */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+            color: white;
             border: none;
-            margin: 20px 0;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 0.5rem; /* Cantos arredondados */
+            font-size: 1.5rem;
+            z-index: 10; /* Garante que os botões fiquem acima das imagens */
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro no hover */
+        }
+
+        .carousel-button.prev {
+            left: 1rem;
+        }
+
+        .carousel-button.next {
+            right: 1rem;
+        }
+
+        /* Estilos para o player de YouTube */
+        .youtube-player {
+            width: 100%;
+            height: 0; /* Altura inicial 0 */
+            padding-bottom: 56.25%; /* Proporção 16:9 (altura/largura) para vídeo responsivo */
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .youtube-player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+        }
+
+        /* Estilos para a mensagem carinhosa */
+        .message-box {
+            background-color: #fff0f5; /* Rosa bem clarinho para o fundo da mensagem */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #ffc0cb; /* Borda rosa suave */
+            text-align: center;
+            font-size: 1.125rem; /* Tamanho da fonte um pouco maior */
+            color: #d81b60; /* Cor de texto mais escura para contraste */
+            line-height: 1.6;
+        }
+
+        /* Media Queries para responsividade */
+        @media (min-width: 640px) { /* Em telas pequenas (sm) */
+            .container {
+                padding: 2.5rem;
+            }
+            .carousel-container {
+                height: 350px;
+            }
+            .message-box {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (min-width: 768px) { /* Em telas médias (md) */
+            .container {
+                padding: 3rem;
+            }
+            .carousel-container {
+                height: 400px;
+            }
+            .message-box {
+                font-size: 1.375rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Feliz Dia dos Namorados!</h1>
-    <div class="gallery">
-        <img src="foto1.jpg" alt="Foto 1">
-        <img src="foto2.jpg" alt="Foto 2">
-        <img src="foto3.jpg" alt="Foto 3">
-    </div>
-    <div class="text-section">
-        <p>Querida/o, aqui estão algumas fotos lindas de nós e também uma música/vídeo que me faz lembrar você! 💖</p>
-    </div>
-    <div class="video-section">
-        <!-- Substitua o link abaixo com o ID do seu vídeo do YouTube -->
-        <iframe src="https://youtu.be/CM-nrQNmHaI?si=pU_O2iTi4enz5S_P" allowfullscreen></iframe>
-    </div>
-    <div class="text-section">
-        <p>Te amo muito! 💕</p>
-    </div>
-</body>
-</html>
+    <div class="container">
+        <!-- Título da página -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-pink-600 mb-6">
+            Meu Amor, Você é Tudo Pra Mim!
+        </h1>
+
+        <!-- Carrossel de Fotos -->
+        <div class="carousel-container">
+            <div class="carousel-images" id="carouselImages">
+                <!-- Por favor, substitua estas URLs pelas suas 8 fotos! -->
+                <img src="https://placehold.co/800x450/FFC0CB/000000?text=Foto+1+do+Nosso+Amor" alt="Foto 1 do casal">
+                <img src="https://placehold.co/800x450/FFB6C1/000000?text=Foto+2+de+Momentos+Especiais" alt="Foto 2 de momentos especiais">
+                <img src="https://placehold.co/800x450/FFDAB9/000000?text=Foto+3+de+Alegria+e+Sorrisos" alt="Foto 3 de alegria e sorrisos">
+                <img sr
