@@ -86,9 +86,11 @@
 
         /* Estilos para o player de YouTube */
         .youtube-player {
-            width: 30%;
+            width: 100%; /* Ocupa 100% da largura do pai */
+            max-width: 600px; /* Define uma largura máxima para o vídeo */
+            margin: 0 auto; /* Centraliza o vídeo horizontalmente */
             height: 0; /* Altura inicial 0 */
-            padding-bottom: 30%; /* Proporção 16:9 (altura/largura) para vídeo responsivo */
+            padding-bottom: 33.75%; /* Ajuste de proporção para 16:9 com a largura máxima de 600px (600 * 9 / 16 = 337.5, 337.5/600 = 0.5625 = 56.25% do *pai*, mas como `padding-bottom` usa a largura do *próprio* elemento, calculamos 33.75% de 600px para altura) */
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
@@ -126,6 +128,11 @@
             .message-box {
                 font-size: 1.25rem;
             }
+            /* Ajuste para o player de YouTube em telas pequenas */
+            .youtube-player {
+                max-width: 500px; /* Largura máxima para telas pequenas */
+                padding-bottom: 28.125%; /* Ajuste de proporção para 16:9 com 500px de largura máxima */
+            }
         }
 
         @media (min-width: 768px) { /* Em telas médias (md) */
@@ -137,6 +144,17 @@
             }
             .message-box {
                 font-size: 1.375rem;
+            }
+            /* Ajuste para o player de YouTube em telas médias */
+            .youtube-player {
+                max-width: 700px; /* Largura máxima para telas médias */
+                padding-bottom: 39.375%; /* Ajuste de proporção para 16:9 com 700px de largura máxima */
+            }
+        }
+        @media (min-width: 1024px) { /* Em telas grandes (lg) */
+            .youtube-player {
+                max-width: 600px; /* Volta para a largura máxima inicial em telas grandes */
+                padding-bottom: 33.75%; /* Proporção original */
             }
         }
     </style>
@@ -152,7 +170,7 @@
         <div class="carousel-container">
             <div class="carousel-images" id="carouselImages">
                 <!-- Por favor, substitua estas URLs pelas suas 8 fotos! -->
-                <img src="https://drive.google.com/file/d/111yuyH-EcZxGy7FjjZG-EkjjiN-yV-fH/view?usp=sharing" alt="Foto 1 do casal">
+                <img src="https://placehold.co/800x450/FFC0CB/000000?text=Foto+1+do+Nosso+Amor" alt="Foto 1 do casal">
                 <img src="https://placehold.co/800x450/FFB6C1/000000?text=Foto+2+de+Momentos+Especiais" alt="Foto 2 de momentos especiais">
                 <img src="https://placehold.co/800x450/FFDAB9/000000?text=Foto+3+de+Alegria+e+Sorrisos" alt="Foto 3 de alegria e sorrisos">
                 <img src="https://placehold.co/800x450/FFE4E1/000000?text=Foto+4+de+Aventura+Juntos" alt="Foto 4 de aventura juntos">
@@ -168,17 +186,15 @@
         <!-- Player de Áudio do YouTube -->
         <div class="youtube-player">
             <!-- Por favor, substitua a URL abaixo pela sua música do YouTube! -->
-            <!-- O 'autoplay=1' tenta iniciar a música automaticamente (pode ser bloqueado por navegadores). -->
-            <!-- O 'loop=1' tenta repetir a música. -->
-            <!-- O 'playlist=VIDEO_ID' precisa do ID do vídeo para o loop funcionar. -->
-            <!-- O 'controls=0' esconde os controles do vídeo. -->
+            <!-- Os controles do YouTube estão visíveis para que o usuário possa iniciar a música quando desejar. -->
+            <!-- O 'loop=1' tenta repetir a música, mas pode exigir o 'playlist=VIDEO_ID' para funcionar. -->
             <!-- O 'modestbranding=1' remove o logo do YouTube. -->
             <!-- O 'rel=0' tenta não mostrar vídeos relacionados ao final. -->
             <!-- O 'disablekb=1' desativa controles de teclado. -->
             <iframe
-                src="https://www.youtube.com/embed/CM-nrQNmHaI?autoplay=1&loop=1&playlist=CM-nrQNmHaI&controls=0&modestbranding=1&rel=0&disablekb=1"
+                src="https://www.youtube.com/embed/CM-nrQNmHaI?loop=1&playlist=CM-nrQNmHaI&modestbranding=1&rel=0&disablekb=1"
                 frameborder="0"
-                allow="autoplay; encrypted-media"
+                allow="encrypted-media"
                 allowfullscreen
                 title="Música do Nosso Amor">
             </iframe>
@@ -223,8 +239,11 @@
             showSlide(currentIndex - 1);
         }
 
-        // Inicia o carrossel automaticamente, trocando a imagem a cada 5 segundos
-        setInterval(nextSlide, 5000); // Muda a imagem a cada 5000 milissegundos (5 segundos)
+        // Inicia o carrossel automaticamente
+        // Ajuste este valor (em milissegundos) para mudar a velocidade de troca das fotos.
+        // Por exemplo, 3000ms = 3 segundos, 7000ms = 7 segundos.
+        // Tente sincronizar com o ritmo geral da sua música!
+        setInterval(nextSlide, 5000); // Troca a imagem a cada 5000 milissegundos (5 segundos)
 
         // Chama showSlide() uma vez para garantir que a primeira imagem seja exibida corretamente ao carregar a página
         showSlide(0);
