@@ -36,8 +36,10 @@
         /* Estilos específicos para o carrossel de imagens */
         .carousel-container {
             position: relative;
-            width: 100%;
-            height: 300px; /* Altura fixa para o carrossel */
+            width: 100%; /* Ocupa 100% do pai, mas limitado por max-width */
+            max-width: 800px; /* **Largura máxima aumentada para o carrossel** */
+            margin: 0 auto; /* **Centraliza o carrossel horizontalmente** */
+            height: 250px; /* **Altura ajustada para o carrossel** */
             overflow: hidden;
             border-radius: 1rem; /* Cantos arredondados para o carrossel */
             background-color: #f0f0f0; /* Fundo para quando as imagens estiverem carregando */
@@ -86,11 +88,11 @@
 
         /* Estilos para o player de YouTube */
         .youtube-player {
-            width: 100%; /* Ocupa 100% da largura do pai */
-            max-width: 600px; /* Define uma largura máxima para o vídeo */
+            width: 100%; /* Ocupa 100% da largura do pai, limitada por max-width */
+            max-width: 450px; /* Largura máxima reduzida para o vídeo */
             margin: 0 auto; /* Centraliza o vídeo horizontalmente */
             height: 0; /* Altura inicial 0 */
-            padding-bottom: 33.75%; /* Ajuste de proporção para 16:9 com a largura máxima de 600px */
+            padding-bottom: 56.25%; /* Mantém a proporção 16:9 (altura/largura) */
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
@@ -123,15 +125,16 @@
                 padding: 2.5rem;
             }
             .carousel-container {
-                height: 350px;
+                max-width: 650px; /* **Largura máxima ajustada para telas pequenas** */
+                height: 300px; /* **Altura ajustada para telas pequenas** */
             }
             .message-box {
                 font-size: 1.25rem;
             }
             /* Ajuste para o player de YouTube em telas pequenas */
             .youtube-player {
-                max-width: 500px; /* Largura máxima para telas pequenas */
-                padding-bottom: 28.125%; /* Ajuste de proporção para 16:9 com 500px de largura máxima */
+                max-width: 350px; /* Largura máxima reduzida para telas pequenas */
+                padding-bottom: 56.25%; /* Mantém a proporção 16:9 */
             }
         }
 
@@ -140,21 +143,26 @@
                 padding: 3rem;
             }
             .carousel-container {
-                height: 400px;
+                max-width: 600px; /* **Largura máxima ajustada para telas médias** */
+                height: 500px; /* **Altura ajustada para telas médias** */
             }
             .message-box {
                 font-size: 1.375rem;
             }
             /* Ajuste para o player de YouTube em telas médias */
             .youtube-player {
-                max-width: 700px; /* Largura máxima para telas médias */
-                padding-bottom: 39.375%; /* Ajuste de proporção para 16:9 com 700px de largura máxima */
+                max-width: 550px; /* Largura máxima reduzida para telas médias */
+                padding-bottom: 56.25%; /* Mantém a proporção 16:9 */
             }
         }
         @media (min-width: 1024px) { /* Em telas grandes (lg) */
             .youtube-player {
-                max-width: 600px; /* Volta para a largura máxima inicial em telas grandes */
-                padding-bottom: 33.75%; /* Proporção original */
+                max-width: 450px; /* Volta para a largura máxima inicial em telas grandes */
+                padding-bottom: 56.25%; /* Mantém a proporção 16:9 */
+            }
+            .carousel-container {
+                max-width: 600px; /* **Volta para a largura máxima inicial em telas grandes** */
+                height: 500px; /* **Volta para a altura inicial** */
             }
         }
     </style>
@@ -163,7 +171,7 @@
     <div class="container">
         <!-- Título da página -->
         <h1 class="text-4xl md:text-5xl font-extrabold text-center text-pink-600 mb-6">
-            Meu Amor, Você é Tudo Pra1 Mim!
+            Meu Amor, Você é Tudo Pra Mim!
         </h1>
 
         <!-- Carrossel de Fotos -->
@@ -172,7 +180,7 @@
                 <!-- Por favor, substitua estas URLs pelas suas 8 fotos! -->
                 <!-- Para melhor formatação e desempenho, tente usar imagens com proporções de aspecto semelhantes -->
                 <!-- e otimize o tamanho do arquivo (KB/MB) antes de carregá-las. -->
-                <!-- As imagens serão escaladas para preencher a área do carrossel (altura fixa de 300px), -->
+                <!-- As imagens serão escaladas para preencher a área do carrossel (altura ajustada), -->
                 <!-- e podem ser cortadas nas laterais se as proporções originais forem muito diferentes do contêiner. -->
                 <img src="1.png?text=Foto+1" alt="Foto 1 do casal">
                 <img src="2.jpg?text=Foto+2" alt="Foto 2 de momentos especiais">
