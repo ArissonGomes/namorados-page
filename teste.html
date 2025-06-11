@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o Meu Amor ❤️</title>
+    <!-- Inclui o Tailwind CSS para estilização fácil e responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define a fonte Inter como padrão para toda a página */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fce7f3; /* Rosa claro de fundo */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que o corpo ocupe pelo menos a altura da viewport */
+            padding: 1rem;
+        }
+
+        /* Estilo para o contêiner principal da página */
+        .container {
+            background-color: #ffffff; /* Fundo branco para o conteúdo */
+            border-radius: 1.5rem; /* Cantos mais arredondados */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            max-width: 900px; /* Largura máxima do contêiner */
+            width: 100%;
+            overflow: hidden; /* Garante que o carrossel não vaze */
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* Espaçamento entre as seções */
+        }
+
+        /* Estilos específicos para o carrossel de imagens */
+        .carousel-container {
+            position: relative;
+            width: 100%; /* Ocupa 100% do pai, mas limitado por max-width */
+            max-width: 800px; /* Largura máxima para o carrossel */
+            margin: 0 auto; /* Centraliza o carrossel horizontalmente */
+            height: 250px; /* Altura ajustada para o carrossel */
+            overflow: hidden;
+            border-radius: 1rem; /* Cantos arredondados para o carrossel */
+            background-color: #f0f0f0; /* Fundo para quando as imagens estiverem carregando */
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Transição suave para o slide */
+            height: 100%;
+        }
+
+        .carousel-images img {
+            min-width: 100%; /* Cada imagem ocupa 100% da largura do contêiner do carrossel */
+            height: 100%; /* Cada imagem ocupa 100% da altura do contêiner do carrossel */
+            object-fit: cover; /* Garante que a imagem cubra a área, cortando se necessário, mantendo a proporção */
+            border-radius: 1rem; /* Cantos arredondados para as imagens */
+        }
+
+        /* Estilos para os botões de navegação do carrossel */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 0.5rem; /* Cantos arredondados */
+            font-size: 1.5rem;
+            z-index: 10; /* Garante que os botões fiquem acima das imagens */
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo mais escuro no hover */
+        }
+
+        .carousel-button.prev {
+            left: 1rem;
+        }
+
+        .carousel-button.next {
+            right: 1rem;
+        }
+
+        /* Estilos para o player de YouTube */
+        .youtube-player {
+            width: 100%; /* Ocupa 100% da largura do pai, limitada por max-width */
+            max-width: 600px; /* Largura máxima definida para 600px */
+            margin: 0 auto; /* Centraliza o vídeo horizontalmente */
+            height: 600px; /* **Altura fixa para 600px (para telas maiores)** */
+            /* Removido: padding-bottom */
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .youtube-player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* O iframe preenche a altura do seu pai */
+            border-radius: 1rem;
+        }
+
+        /* Estilos para a mensagem carinhosa */
+        .message-box {
+            background-color: #fff0f5; /* Rosa bem clarinho para o fundo da mensagem */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #ffc0cb; /* Borda rosa suave */
+            text-align: center;
+            font-size: 1.125rem; /* Tamanho da fonte um pouco maior */
+            color: #d81b60; /* Cor de texto mais escura para contraste */
+            line-height: 1.6;
+        }
+
+        /* Media Queries para responsividade */
+        @media (max-width: 639px) { /* Em telas pequenas (0 a 639px) */
+            .youtube-player {
+                max-width: 300px; /* Largura máxima para telas pequenas */
+                height: 300px; /* Altura igual à largura máxima */
+            }
+        }
+        @media (min-width: 640px) and (max-width: 767px) { /* Em telas médias (640px a 767px) */
+            .container {
+                padding: 2.5rem;
+            }
+            .carousel-container {
+                max-width: 650px; /* Largura máxima ajustada para telas pequenas */
+                height: 300px; /* Altura ajustada para telas pequenas */
+            }
+            .message-box {
+                font-size: 1.25rem;
+            }
+            /* Ajuste para o player de YouTube em telas pequenas */
+            .youtube-player {
+                max-width: 450px; /* Largura máxima para telas médias */
+                height: 450px; /* Altura igual à largura máxima */
+            }
+        }
+
+        @media (min-width: 768px) { /* Em telas grandes (768px e acima) */
+            .container {
+                padding: 3rem;
+            }
+            .carousel-container {
+                max-width: 800px; /* Largura máxima ajustada para telas médias */
+                height: 350px; /* Altura ajustada para telas médias */
+            }
+            .message-box {
+                font-size: 1.375rem;
+            }
+            /* Ajuste para o player de YouTube em telas grandes */
+            .youtube-player {
+                max-width: 600px; /* Volta para a largura máxima inicial em telas grandes */
+                height: 600px; /* Volta para a altura inicial */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título da página -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-pink-600 mb-6">
+            Meu Amor, Você é Tudo Pra Mim!
+        </h1>
+
+        <!-- Carrossel de Fotos -->
+        <div class="carousel-container">
+            <div class="carousel-images" id="carouselImages">
+                <!-- Por favor, substitua estas URLs pelas suas 8 fotos! -->
+                <!-- Para melhor formatação e desempenho, tente usar imagens com proporções de aspecto semelhantes -->
+                <!-- e otimize o tamanho do arquivo (KB/MB) antes de carregá-las. -->
+                <!-- As imagens serão escaladas para preencher a área do carrossel (altura ajustada), -->
+                <!-- e podem ser cortadas nas laterais se as proporções originais forem muito diferentes do contêiner. -->
+                <img src="1.png?text=Foto+1" alt="Foto 1 do casal">
+                <img src="2.jpg?text=Foto+2" alt="Foto 2 de momentos especiais">
+                <img src="3.jpg?text=Foto+3" alt="Foto 3 de alegria e sorrisos">
+                <img src="4.jpg?text=Foto+4" alt="Foto 4 de aventura juntos">
+                <img src="5.jpg?text=Foto+5" alt="Foto 5 de cumplicidade">
+                <img src="6.jpg?text=Foto+6" alt="Foto 6 de carinho">
+                <img src="7.jpg?text=Foto+7" alt="Foto 7 de sonhos compartilhados">
+                <img src="8.jpg?text=Foto+8" alt="Foto 8 de nós">
+            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
+        </div>
+
+        <!-- Player de Áudio do YouTube -->
+        <div class="youtube-player">
+            <!-- Por favor, substitua a URL abaixo pela sua música do YouTube! -->
+            <!-- Os controles do YouTube estão visíveis para que o usuário possa iniciar a música quando desejar. -->
+            <!-- O 'loop=1' tenta repetir a música, mas pode exigir o 'playlist=VIDEO_ID' para funcionar. -->
+            <!-- O 'modestbranding=1' remove o logo do YouTube. -->
+            <!-- O 'rel=0' tenta não mostrar vídeos relacionados ao final. -->
+            <!-- O 'disablekb=1' desativa controles de teclado. -->
+            <iframe
+                src="https://www.youtube.com/embed/CM-nrQNmHaI?loop=1&playlist=CM-nrQNmHaI&modestbranding=1&rel=0&disablekb=1"
+                frameborder="0"
+                allow="encrypted-media"
+                allowfullscreen
+                title="Música do Nosso Amor">
+            </iframe>
+        </div>
+
+        <!-- Mensagem Carinhosa -->
+        <div class="message-box">
+            <!-- Por favor, substitua esta mensagem pela sua mensagem carinhosa! -->
+            <p>
+                Meu amor, cada momento ao seu lado é um presente. Você ilumina meus dias e faz meu coração transbordar de alegria. Agradeço por cada risada, cada abraço e por ser a pessoa mais incrível que já conheci. Te amo mais do que palavras podem expressar!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Array com os elementos de imagem do carrossel
+        const carouselImages = document.getElementById('carouselImages');
+        const images = carouselImages.getElementsByTagName('img');
+        let currentIndex = 0; // Índice da imagem atual
+
+        // Função para mostrar a imagem atual
+        function showSlide(index) {
+            // Garante que o índice esteja dentro dos limites do array de imagens
+            if (index >= images.length) {
+                currentIndex = 0; // Volta para a primeira imagem se chegar ao fim
+            } else if (index < 0) {
+                currentIndex = images.length - 1; // Vai para a última imagem se for para trás do início
+            } else {
+                currentIndex = index; // Define o índice atual
+            }
+            // Move o contêiner de imagens para mostrar a imagem correta
+            carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        // Função para ir para a próxima imagem
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        // Função para ir para a imagem anterior
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+
+        // Inicia o carrossel automaticamente
+        // Ajuste este valor (em milissegundos) para mudar a velocidade de troca das fotos.
+        // Por exemplo, 3000ms = 3 segundos, 7000ms = 7 segundos.
+        // Tente sincronizar com o ritmo geral da sua música!
+        setInterval(nextSlide, 5000); // Troca a imagem a cada 5000 milissegundos (5 segundos)
+
+        // Chama showSlide() uma vez para garantir que a primeira imagem seja exibida corretamente ao carregar a página
+        showSlide(0);
+    </script>
+</body>
+</html>
